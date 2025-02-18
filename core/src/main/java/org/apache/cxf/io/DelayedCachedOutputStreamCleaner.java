@@ -167,7 +167,8 @@ public final class DelayedCachedOutputStreamCleaner implements CachedOutputStrea
             }
             
             final DelayedCloseable other = (DelayedCloseable) obj;
-            return Objects.equals(closeable, other.closeable);
+            // Check in two ways to find equal streams due Liskov Substitution Principle
+            return Objects.equals(other.closeable, closeable) || Objects.equals(closeable, other.closeable);
         }
     }
 
